@@ -8,6 +8,7 @@
       :songs="songList"
       :currentSong="currentSong"
       @handlePlay="handlePlay"
+      @handleDelete="handleDelete"
     />
   </div>
 </template>
@@ -16,12 +17,14 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import CurrentSong from './components/CurrentSong'
 import SongList from './components/SongList'
+import _ from 'lodash'
 
 export default {
   name: 'app',
   data() {
     return {
       currentSong: null,
+      audioElement: null,
       songList: [
         {
           id: '1',
@@ -178,7 +181,31 @@ export default {
   },
   methods: {
     handlePlay: function(song){
+      
+      if (this.audioElement == null){
+        this.audioElement = new Audio(song.music_url)
+        this.audioElement.play()
+      } else {
+        if (song == this.currentSong) {
+          if (this.audioElement.paused){
+            this.audioElement.play()
+          } else {
+            this.audioElement.pause()
+          }
+        } else {
+          this.audioElement.src = song.music_url
+          this.audioElement.play()
+        }
+      }
       this.currentSong = song
+      this.audioElement.addEventListener('ended', () => {
+        this.currentSong = null
+        this.audioElement = null
+      })
+    },
+    handleDelete: function(song){
+      const updatedSongList = _.without(this.songList, song)
+      this.songList = updatedSongList
     }
   },
   components: {
