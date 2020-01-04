@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import CurrentSong from './components/CurrentSong'
 import SongList from './components/SongList'
 import _ from 'lodash'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -58,12 +59,20 @@ export default {
     }
   },
   created() {
-    fetch('./data.json')
-      .then(res => res.json())
-      .then(res => {
-        this.songList = res
-      })
-      .catch(error => console.log(error))
+
+    axios({
+      method: 'get',
+      url: 'http://orangevalleycaa.org/api/music',
+    })
+    .then(res => (this.songList = res.data))
+    .catch(error => console.log(error))
+
+    // fetch('./data.json')
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     this.songList = res
+    //   })
+    //   .catch(error => console.log(error))
   },
   components: {
     FontAwesomeIcon,
