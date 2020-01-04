@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <h1 class="text-primary mt-3">Music App</h1>
+    <p><font-awesome-icon icon="play" /> Modern Hard Rock</p>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    FontAwesomeIcon,
+  },
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans:300&display=swap');
+$primary: rgb(182, 80, 182);
+$body-bg: #2a2d33;
+$text-body: #fff;
+$body-color: $text-body;
+@import 'node_modules/bootstrap/scss/bootstrap';
 </style>
