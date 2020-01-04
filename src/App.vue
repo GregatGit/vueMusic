@@ -1,22 +1,26 @@
 <template>
-  <div id="app" class="container">
-    <h1 class="text-primary mt-3">{{name}}</h1>
-    <p><font-awesome-icon icon="trash" /> Love song 1</p>
+  <div id="app">
+    <current-song :song="currentSong" />
   </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import CurrentSong from './components/CurrentSong'
 
 export default {
   name: 'app',
   data() {
     return {
-      name: 'Modern Stuff'
+      currentSong: {
+        name: 'Music to Die For',
+        description: 'Music that needs to be played!',
+      },
     }
   },
   components: {
     FontAwesomeIcon,
+    CurrentSong
   },
 }
 </script>
@@ -33,12 +37,12 @@ $border-radius: 8px;
 
 //overrides
 
-$font-family-headlines: "Fjalla One", -apple-system, BlinkMacSystemFont,
-  "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol";
-$font-family-base: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-headlines: 'Fjalla One', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
+$font-family-base: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Roboto', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
 
 $headings-font-family: $font-family-headlines;
 $headings-font-weight: 400;
@@ -50,7 +54,7 @@ $list-group-border-radius: 0;
 $list-group-hover-bg: #444;
 $list-group-action-color: #bbb;
 
-@import "node_modules/bootstrap/scss/bootstrap";
+@import 'node_modules/bootstrap/scss/bootstrap';
 
 //currentsong
 .currentsong-background {
