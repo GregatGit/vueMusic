@@ -19,15 +19,17 @@ import CurrentSong from './components/CurrentSong'
 import SongList from './components/SongList'
 import _ from 'lodash'
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
   data() {
     return {
-      currentSong: null,
-      audioElement: null,
-      songList: null,
+      audioElement: null
     }
+  },
+  computed: {
+    ...mapState(['songList', 'currentSong'])
   },
   methods: {
     handlePlay: function(song){
@@ -59,14 +61,14 @@ export default {
     }
   },
   created() {
-
-    axios({
-      method: 'get',
-      url: 'http://orangevalleycaa.org/api/music/',
-      params: { order: 'name'}
-    })
-    .then(res => (this.songList = res.data))
-    .catch(error => console.log(error))
+    this.$store.dispatch('fetchSongs')
+    // axios({
+    //   method: 'get',
+    //   url: 'http://orangevalleycaa.org/api/music/',
+    //   params: { order: 'name'}
+    // })
+    // .then(res => (this.songList = res.data))
+    // .catch(error => console.log(error))
 
     // fetch('./data.json')
     //   .then(res => res.json())
