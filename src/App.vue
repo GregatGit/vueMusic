@@ -62,7 +62,8 @@ export default {
 
     axios({
       method: 'get',
-      url: 'http://orangevalleycaa.org/api/music',
+      url: 'http://orangevalleycaa.org/api/music/',
+      params: { order: 'name'}
     })
     .then(res => (this.songList = res.data))
     .catch(error => console.log(error))
