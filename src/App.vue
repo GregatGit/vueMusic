@@ -14,11 +14,10 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import CurrentSong from './components/CurrentSong'
 import SongList from './components/SongList'
-import _ from 'lodash'
-import axios from 'axios'
+//import _ from 'lodash'
+//import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default {
@@ -49,15 +48,14 @@ export default {
           this.audioElement.play()
         }
       }
-      this.currentSong = song
+      this.$store.dispatch('setCurrentSong', song)
       this.audioElement.addEventListener('ended', () => {
-        this.currentSong = null
+        this.$store.dispatch('setCurrentSong', null)
         this.audioElement = null
       })
     },
     handleDelete: function(song){
-      const updatedSongList = _.without(this.songList, song)
-      this.songList = updatedSongList
+      this.$store.dispatch('deleteSong', song)
     }
   },
   created() {
@@ -78,7 +76,6 @@ export default {
     //   .catch(error => console.log(error))
   },
   components: {
-    FontAwesomeIcon,
     CurrentSong,
     SongList
   },
