@@ -1,19 +1,4 @@
 # vue-vuex
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This is other great tutorial by Ray Vilalobos.
+You can find "Vue.js: Working with APIs" on lynda.com. It teaches you how to use vuex and plenty of other skills.
